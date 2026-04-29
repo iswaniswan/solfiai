@@ -47,7 +47,7 @@ DropifyAsset::register($this);
 
 <div class="row">
     <div class="col-8">
-        <div class="dt-button-wrapper">
+        <div class="dt-button-wrapper mb-2">
             <?php $id_member = Session::getIdMember(); ?>
             <?= Html::a('<i class="icon-user mr-2"></i>Profile', ['member/update-profile', 'id' => $id_member], ['class' => 'btn btn-danger active mb-1']) ?>
             <?= Html::a('<i class="icon-badge mr-2"></i>Paket', ['member/update-paket', 'id' => $id_member], ['class' => 'btn btn-danger mb-1']) ?>

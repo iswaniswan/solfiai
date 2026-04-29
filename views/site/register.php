@@ -264,7 +264,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     </div>
 
-                    <div class="field-harga_paket  mb-4" style="padding:unset">
+                    <div class="field-phone  mb-4" style="padding:unset">
+                        <label class="col-12" style="padding-left: unset" for="phone">No Handphone</label>
+                        <input type="text" class="col-12 form-control" pattern="[0-9]*" inputmode="numeric" name="User[phone]" id="phone" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
+                    </div>
+
+                    <div class="field-telegram_id mb-4" style="padding:unset">
                         <label class="col-12" style="padding-left: unset" for="telegram_id">ID Telegram</label>
                         <input type="text" class="col-12 form-control " name="User[telegram_id]" id="telegram_id" required>
                     </div>
