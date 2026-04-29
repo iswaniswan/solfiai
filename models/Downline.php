@@ -227,7 +227,7 @@ class Downline extends \yii\db\ActiveRecord
             "parentId" => $this->id_upline0,
             "idGroup" => $id_group,
             "name" => @$this->member->nama,
-            "imageUrl" => $this->member->getLinkPhoto(),
+            "imageUrl" => @$this->member->getLinkPhoto(),
             "posisi" => $this->posisi,
             "is_active" => $this->member->isActive(),
             "downline" => []

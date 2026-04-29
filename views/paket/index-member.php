@@ -21,7 +21,15 @@ echo \app\widgets\Breadcrumbs::widget([
 
 <div class="row mb-4">
     <?php foreach ($dataProvider->models as $model) { ?>
-        <div class="col-md-6">
+
+        <?php 
+        /* non premium style */
+        if (@$model->is_premium == 1) {
+            continue;
+        }
+        
+        ?>
+        <div class="col-md-4 col-lg-4 col-xl-4 col-sm-12">
             <div class="card-box tilebox-one bg-dark">
                 <i class="icon-tag float-right m-0 h2 text-muted"></i>                
                 <h3 class="my-3 card-poin"><?= strtoupper($model->name) ?></h3>
@@ -42,6 +50,36 @@ echo \app\widgets\Breadcrumbs::widget([
                         
                         
                         ?>
+                        <?php 
+                        $url = Url::to(['deposit/create-member', 'id_paket' => $model->id]);
+                        $html = '<a href="'.$url.'" class="btn btn-primary btn-rounded waves-effect waves-light float-right">Detail</a>';
+                        
+                        echo $html;
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+</div>
+
+<div class="row mb-4">
+    <?php foreach ($dataProvider->models as $model) { ?>
+
+        <?php 
+        /* premium style */
+        if (@$model->is_premium == 0) {
+            continue;
+        }
+        
+        ?>
+        <div class="col-md-4 col-lg-4 col-xl-4 col-sm-12">
+            <div class="card-box tilebox-one bg-warning">
+                <i class="icon-tag float-right m-0 h2 text-muted"></i>                
+                <h3 class="my-3 card-poin text-danger"><?= strtoupper($model->name) ?></h3>
+                <div class="row" style="display: flex;">
+                    <div class="container" style="position: relative">
+                        <span class="text-white" style="vertical-align: sub; font-size: larger; margin-left: 10px;">RP. <?= number_format($model->price, 0, ",", ".") ?></span>
                         <?php 
                         $url = Url::to(['deposit/create-member', 'id_paket' => $model->id]);
                         $html = '<a href="'.$url.'" class="btn btn-primary btn-rounded waves-effect waves-light float-right">Detail</a>';
