@@ -16,7 +16,7 @@ use yii\web\Cookie;
 // // set dark mode as default
 \app\assets\UplonAssetDark::register($this);
 
-AppAsset::register($this);
+// AppAsset::register($this);
 
 /** cookie check */
 // $request = Yii::$app->request;

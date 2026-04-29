@@ -1,6 +1,7 @@
 <?php
 
 use app\assets\UplonAsset;
+use app\assets\UplonAssetDark;
 use app\components\Session;
 use app\models\Member;
 use yii\helpers\Url;
@@ -54,7 +55,8 @@ use yii\web\View;
                     $checked = 'checked';
                     $flag = true;
                 }
-                ?>                        
+                ?>                    
+                <?php /*    
                 <a href="<?= Url::to(['site/toggle-dark-mode', 'flag' => $flag]) ?>" class="dropdown-item notify-item">
                     <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input theme-choice" 
@@ -62,6 +64,7 @@ use yii\web\View;
                         <label class="custom-control-label" for="dark-mode-switch">Dark Mode</label>
                     </div>
                 </a> 
+                */ ?>
 
 
                 <div class="dropdown-divider"></div>
@@ -80,13 +83,13 @@ use yii\web\View;
     <div class="logo-box">
         <a href="<?= Url::to(['/dashboard']) ?>" class="logo text-center logo-light">
             <span class="logo-lg" style="">
-                <img src="<?= Yii::getAlias('@web').'/images/LOGO.png' ?>" style="width:80%; max-height:64px; object-fit:scale-down">
+                <img src="<?= Yii::getAlias('@web').'/images/logo2dsmalltransparent.png' ?>" style="width:80%; max-height:64px; object-fit:scale-down">
                 <!-- <span class="logo-lg-text-dark">Uplon</span> -->
             </span>
         </a>
         <a href="<?= Url::to(['/dashboard']) ?>" class="logo text-center logo-dark">
             <span class="logo-lg" style="">
-                <img src="<?= Yii::getAlias('@web').'/images/LOGO.png' ?>" style="width:80%; max-height:64px; object-fit:scale-down">
+                <img src="<?= Yii::getAlias('@web').'/images/logo2dsmalltransparent.png' ?>" style="width:80%; max-height:64px; object-fit:scale-down">
                 <!-- <span class="logo-lg-text-dark">Uplon</span> -->
             </span>
         </a>
@@ -104,13 +107,17 @@ use yii\web\View;
 
 <?php 
 
-$assetManager = $this->getAssetManager();
-$bundle = $assetManager->getBundle(UplonAsset::className());
-$cssBootstrap = $assetManager->getAssetUrl($bundle, 'css/bootstrap.min.css');
-$cssBootstrapDark  = $assetManager->getAssetUrl($bundle, 'css/bootstrap-dark.min.css');
-$cssApp = $assetManager->getAssetUrl($bundle, 'css/app.css');
-$cssAppDark = $assetManager->getAssetUrl($bundle, 'css/app-dark.css');
+// $assetManager = $this->getAssetManager();
+// $bundle = $assetManager->getBundle(UplonAssetDark::className());
+// $cssBootstrap = $assetManager->getAssetUrl($bundle, 'css/bootstrap.min.css');
+// $cssBootstrapDark  = $assetManager->getAssetUrl($bundle, 'css/bootstrap-dark.min.css');
+// $cssApp = $assetManager->getAssetUrl($bundle, 'css/app.css');
+// $cssAppDark = $assetManager->getAssetUrl($bundle, 'css/app-dark.css');
 
+/** custom */
+// $cssCustom = $assetManager->getAssetUrl($bundle, 'css/custom.min.css');
+
+/*
 $script = <<<JS
 
     $(document).ready(function() {
@@ -130,5 +137,5 @@ $script = <<<JS
 JS;
 
 $this->registerJs($script, View::POS_END);
-
+*/
 ?>

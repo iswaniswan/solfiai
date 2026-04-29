@@ -53,7 +53,7 @@ $config = [
             'bundles' => [
                 \yii\bootstrap5\BootstrapAsset::class => [
                     'css' => [
-                        '@themes/uplon/assets/css/bootstrap.min.css'
+                        '@themes/uplon/assets/css/bootstrap-dark.min.css'
                         ]
                     ],                
                     'kartik\form\ActiveFormAsset' => [

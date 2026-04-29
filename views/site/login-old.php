@@ -9,7 +9,7 @@ use yii\bootstrap5\Html;
 use yii\helpers\Url;
 use yii\web\View;
 
-\app\assets\UplonAsset::register($this);
+// \app\assets\UplonAsset::register($this);
 
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;

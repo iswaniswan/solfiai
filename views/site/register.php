@@ -10,7 +10,7 @@ use yii\helpers\Url;
 use yii\web\View;
 
 \app\assets\RegisterAsset::register($this);
-\app\assets\UplonAsset::register($this);
+// \app\assets\UplonAsset::register($this);
 
 $this->title = 'Register';
 $this->params['breadcrumbs'][] = $this->title;
@@ -29,18 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
         cursor: pointer;
         background-color: transparent !important;
     }
-    a[data-index]:not(.disabled) {
-        box-shadow: 0px 0px 4px #f1b53d;
-    }
-
-    .box-bottom {
-        display: flex;
-        flex-direction: column;
-        justify-content: end;
-    }
 
     body {
-        background-image: url('<?= Yii::getAlias('@web').'/images/background.jpg' ?>');
+        /* background-image: url('<?php // Yii::getAlias('@web').'/images/background.jpg' ?>'); */
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -55,25 +46,118 @@ $this->params['breadcrumbs'][] = $this->title;
         border: 1px solid rgba(209, 213, 219, 0.3);
     }
     
-    @media (max-height: 667px) {
-        #wrapper {
-            height: 100vh;
-            overflow: visible;
-        }
-        .row.go-to-login {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            transform: translate(5%, -50%);
-        }
-        .box-center {
-            width: 100%;
-        }
-        .card-body {
-            padding: 1.25rem 0;
-        }
+    .card:hover, .btn:hover {
+        transform: unset !important;
     }
+</style>
+
+<style>
+  :root {
+    --primary-color: #E94560;
+    /* Warna background disesuaikan agar match dengan backdrop logo */
+    --card-bg: #1a1a1d; 
+    --input-bg: #e9ecef;
+    --text-label: #E94560;
+  }
+
+  body {
+    /* background-color: #0f0f12; Background luar lebih gelap */
+    background-color: var(--dark);
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .login-card {
+    background-color: var(--card-bg);
+    width: 380px;
+    padding: 40px;
+    border-radius: 12px;
+    /* Drop shadow halus, bukan efek 3D */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .solfi-logo {
+    color: var(--primary-color);
+    font-size: 42px;
+    font-weight: 900;
+    margin-bottom: 30px;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    /* Shadow pada teks untuk kedalaman tanpa 3D bevel */
+    text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  .input-group {
+    text-align: left;
+    margin-bottom: 20px;
+  }
+
+  .input-group label {
+    display: block;
+    color: var(--text-label);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--input-bg);
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+
+  .password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .eye-icon {
+    position: absolute;
+    right: 15px;
+    color: var(--primary-color);
+    cursor: pointer;
+  }
+
+  .login-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: opacity 0.2s;
+  }
+
+  .login-btn:hover {
+    opacity: 0.9;
+  }
+
+  .footer-text {
+    color: #888;
+    font-size: 13px;
+    margin-top: 25px;
+  }
+
+  .footer-text a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
 </style>
 
 
@@ -122,7 +206,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 
-<div class="row justify-content-center text-warning box-center">
+<div class="row justify-content-center text-primary box-center">
     <?php $form = ActiveForm::begin([
         'id' => 'register-form',
         'layout' => 'horizontal',
@@ -144,147 +228,58 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-12 p-4">
                 <div class="row text-center">
                     <a href="#" class="col">
-                        <img src="<?= Yii::getAlias('@web').'/images/LOGO.png' ?>" style="width:50%; max-height:70px; object-fit:scale-down">
+                        <img src="<?= Yii::getAlias('@web').'/images/logo2dsmalltransparent.png' ?>" style="width:50%; max-height:70px; object-fit:scale-down">
                     </a>
                 </div>
             </div>
-            <div class="col-md-12 text-center">
-                <h3 class="mb-5 text-warning">Account Registration</h3>
-                <div class="row">
-                    <div class="col box-bottom">
-                        <a id="t-0" data-index="0" class="btn btn-primary btn-action btn-rounded mx-auto mb-2" href="#h-0"
-                           style="border-radius: 100% !important; height: 48px; width: 48px; display: flex; position: relative">
-                            <span class="icon-link" style="font-size: 1rem; position: absolute; top: 29%; left: 33%"></span>
-                        </a>
-                        <p class="text-center">Referral</p>
-                    </div>
-                    <div class="col box-bottom">
-                        <a id="t-1" data-index="1" class="btn btn-primary btn-action btn-rounded disabled mx-auto mb-2" href="#h-1"
-                           style="border-radius: 100% !important; height: 48px; width: 48px; display: flex; position: relative">
-                            <span class="icon-key" style="font-size: 1rem; position: absolute; top: 29%; left: 33%"></span>
-                        </a>
-                        <p class="text-center">Account</p>
-                    </div>
-                    <div class="col box-bottom">
-                        <a id="t-2" data-index="2" class="btn btn-primary btn-action btn-rounded disabled mx-auto mb-2" href="#h-2"
-                           style="border-radius: 100% !important; height: 48px; width: 48px; display: flex; position: relative">
-                            <span class="icon-user" style="font-size: 1rem; position: absolute; top: 29%; left: 33%"></span>
-                        </a>
-                        <p class="text-center">Profile</p>
-                    </div>
-                    <div class="col box-bottom">
-                        <a id="t-3" data-index="3" class="btn btn-primary btn-action btn-rounded disabled mx-auto mb-2" href="#h-3"
-                           style="border-radius: 100% !important; height: 48px; width: 48px; display: flex; position: relative">
-                            <span class="icon-wallet" style="font-size: 1rem; position: absolute; top: 29%; left: 33%"></span>
-                        </a>
-                        <p class="text-center">Wallet</p>
-                    </div>
-                </div>
-            </div>
-            <div id="example-basic">
+            <div id="login-form">
                 <h3></h3>
                 <section>
-                    <div class="col-12">
-                        <?php
-                        $referralValue = null;
-                        $attribute = 'required';
-                        if (@$referral != null) {
-                            $referralValue = $referral;
-                            $attribute = 'readonly';
-                        }
-
-                        ?>
-                        <div class="field-referral-code required">
-                            <label class="col-12" style="padding-left: unset" for="referral-code">*Referral Code</label>
-
-
-                            <div class="input-group">
-                                <input type="text" id="referral_code" maxlength="8" class="col-12 form-control"
-                                       name="User[registered_referral_code]"
-                                       value="<?= $referralValue ?>" aria-required="true"
-                                       aria-invalid="false" <?= $attribute ?>>
-                                <div class="input-group-append">
-                                    <button type="button" class="btn btn-info btn-sm" onclick="actionStep()">
-                                        <span class="icon-lock-open px-2 text-white"></span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <h3></h3>
-                <section>
-                    <div class="field-email required">
+                    <div class="field-email required mb-4">
                         <label class="col-12" style="padding-left: unset" for="email">Email</label>
                         <input type="email" id="email" class="col-12 form-control" name="User[email]" required="" aria-required="true">
                     </div>
 
-                    <div class="field-harga_paket" style="padding:unset">
-                        <label class="col-12" style="padding-left: unset" for="username">Username</label>
+                    <div class="field-harga_paket  mb-4" style="padding:unset">
+                        <label class="col-12" style="padding-left: unset" for="username">User ID</label>
                         <div class="input-group">
                             <input type="text" class="col-12 form-control " name="User[username]" id="username" required>
                             <div class="input-group-append">
-                                <button type="button" class="btn btn-warning btn-sm" onclick="generateUsername()" title="Generate">
+                                <button type="button" class="btn btn-primary btn-sm" onclick="generateUsername()" title="Generate">
                                     <i class="ti-shield px-2 text-white"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="field-harga_paket" style="padding:unset">
+                    <div class="field-harga_paket  mb-4" style="padding:unset">
                         <label class="col-12" style="padding-left: unset" for="password">Password</label>
                         <div class="input-group">
                             <input type="text" class="col-12 form-control " name="User[password]" id="password" minlength='8' required>
                             <div class="input-group-append">
-                                <button type="button" class="btn btn-warning btn-sm" onclick="generatePassword()" title="Generate">
+                                <button type="button" class="btn btn-primary btn-sm" onclick="generatePassword()" title="Generate">
                                     <i class="ti-shield px-2 text-white"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
-                </section>
 
-                <h3></h3>
-                <section>
-                    <?= $form->field($model, 'nama')->textInput([
-                        'maxlength' => true,
-                        'required' => 'required',
-                    ])->label('Nama Lengkap') ?>
+                    <div class="field-harga_paket  mb-4" style="padding:unset">
+                        <label class="col-12" style="padding-left: unset" for="telegram_id">ID Telegram</label>
+                        <input type="text" class="col-12 form-control " name="User[telegram_id]" id="telegram_id" required>
+                    </div>
 
-                    <?= $form->field($model, 'phone')->textInput([
-                        'maxlength' => true,
-                        'required' => 'required',
-                    ])->label('Telepon') ?>
-                </section>
-
-                <h3></h3>
-                <section>
-                    <?= $form->field($model, 'bank')->textInput([
-                        'maxlength' => true,
-                        'required' => 'required',
-                    ])->label('Bank') ?>
-
-                    <?= $form->field($model, 'rekening')->textInput([
-                        'maxlength' => true,
-                        'required' => 'required',
-                    ])->label('No. Rekening') ?>
-
-                    <?= $form->field($model, 'rekening_an')->textInput([
-                        'maxlength' => true,
-                        'required' => 'required',
-                    ])->label('Atas Nama Rekening') ?>
                 </section>
             </div>
-            <?= Html::submitButton('', ['class' => 'd-none', 'id' => 'btn-register-submit']) ?>
+            <?= Html::submitButton('Daftar', ['class' => 'btn btn-primary btn-block mb-4', 'id' => 'btn-register-submit']) ?>
         </div>
+    
+    </div>
+    <div class="go-to-login">
+        <div class="col-12 text-center">
+        <p class="d-flex justify-content-center text-primary" style="margin-top: 2rem; margin-bottom:unset;">Sudah memiliki akun? <a href="<?= \yii\helpers\Url::to(['/site/login']) ?>" class=" ml-1"><b>Login</b></a></p>
     </div>
     <?php ActiveForm::end(); ?>
-    </div>
-
-    <div class="row go-to-login">
-        <div class="col-12 text-center">
-        <p class="d-flex justify-content-center text-warning" style="margin-top: 2rem; margin-bottom:unset;">Have an account? <a href="<?= \yii\helpers\Url::to(['/site/login']) ?>" class=" ml-1"><b>Login</b></a></p>
     </div>
 
 

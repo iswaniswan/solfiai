@@ -57,7 +57,7 @@ class MemberController extends Controller
                             'update-profile', 'update-paket', 'update-bank', 'update-security', 'member-area',
                             'generate-username', 'generate-password', 'generate-pin', 'index-fund-statement', 'index-fund-statement-view',
                             'index-admin-distributor', 'create-admin-distributor', 'get-list-ref-kota-kab', 'toggle-distributor',
-                            'get-list-member-group', 'activate-subdomain'
+                            'get-list-member-group', 'activate-subdomain', 'index-view'
                         ],
                         'allow' => true,
                         'roles' => ['@'],
@@ -1112,6 +1112,15 @@ class MemberController extends Controller
         return $response;
     }
 
-
+    public function actionIndexView()
+    {
+        $id = Session::getIdMember();
+        $referrer = $this->request->referrer;
+        return $this->render('update-profile', [
+            'model' => Member::findOne($id),
+            'referrer' => $referrer,
+            'mode' => 'view'
+        ]);
+    }
 
 }

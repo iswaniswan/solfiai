@@ -1,0 +1,143 @@
+/** solfin by chat gpt */
+:root {
+    --primary: #1A1A2E;
+    --accent: #E94560;
+    --accent-dark: #0F3460;
+    --white: #FFFFFF;
+    --light: #F8F9FA;
+    --gray: #6C757D;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--primary);
+}
+
+.btn {
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 10px 25px;
+    transition: all 0.3s ease;
+}
+
+/* Primary = accent kamu */
+.btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: #d63c55;
+    border-color: #d63c55;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
+}
+
+/* Outline */
+.btn-outline-primary {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.btn-outline-primary:hover {
+    background: var(--accent);
+    color: var(--white);
+}
+
+.navbar {
+    background: rgba(26, 26, 46, 0.95) !important;
+    backdrop-filter: blur(10px);
+    padding: 15px 0;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: var(--white) !important;
+}
+
+.navbar-brand span {
+    color: var(--accent);
+}
+
+.navbar-nav .nav-link {
+    color: var(--white) !important;
+    margin-left: 20px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--accent) !important;
+}
+
+.card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    background: transparent;
+    border-bottom: none;
+    font-weight: 600;
+}
+
+.card-primary {
+    border: 2px solid var(--accent);
+}
+
+.badge-primary {
+    background: var(--accent);
+}
+
+.bg-primary-custom {
+    background: linear-gradient(135deg, var(--primary), var(--accent-dark));
+    color: white;
+}
+
+.bg-light-custom {
+    background: var(--light);
+}
+
+.feature-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 16px;
+    text-align: left;
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.pricing-card {
+    text-align: center;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.pricing-card.popular {
+    border: 2px solid var(--accent);
+    transform: scale(1.05);
+}
+
+.text-primary {
+    color: var(--accent) !important;
+}
+
+
+.ti-ticket {
+    transform: rotate(45deg);
+}

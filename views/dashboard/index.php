@@ -32,8 +32,26 @@ $currentRoi = Roi::getCurrentRoi();
 
 
 <div class="row mb-4">
+    <div class="col-md-6 col-xl-3">
+        <div class="card-box tilebox-one bg-dark">
+            <i class="icon-people float-right m-0 h2 text-muted"></i>
+            <h6 class="text-muted text-uppercase mt-0">APPROVAL REGISTER</h6>
+            <h3 class="my-3" data-plugin="counterup">0</h3>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="card-box tilebox-one bg-dark">
+            <i class="ti-money float-right m-0 h2 text-muted"></i>
+            <h6 class="text-muted text-uppercase mt-0">APPROVAL WITHDRAW</h6>
+            <h3 class="my-3" data-plugin="counterup">0</h3>
+        </div>
+    </div>
+</div>
+
+<?php /*
+<div class="row mb-4">
     <div class="col-sm-6">
-        <div class="card-box tilebox-one">
+        <div class="card-box tilebox-one bg-dark">
             <h6 class="text-muted text-uppercase mt-0">Member Area</h6>
             <div class="row mt-4 mb-2" style="margin-left: -24px;">
                 <a href="<?= Url::to(['member/update-profile', 'id' => $member->id]) ?>" class="col text-center">
@@ -55,25 +73,13 @@ $currentRoi = Roi::getCurrentRoi();
             </div>
         </div>
     </div>
-    <?php /*
-    <div class="col-sm-3">
-        <div class="card-box tilebox-one">
-            <i class="ti-ticket float-right m-0 h2 text-success"></i>
-            <h6 class="text-muted text-uppercase mt-0">ADMIN</h6>
-            <h3 class="my-3 card-poin"><i class="ti-infinite"></i></h3>
-            <span>Ticket</span>
-            <div class="text-right" style="margin-top: -24px;">
-                <a href="<?= Url::to(['/fund-ticket/index-admin']) ?>" class="btn btn-primary">Detail</a>
-            </div>
-        </div>
-    </div>
-    */ ?>
+
     <div class="col-sm-6">
-        <div class="card-box tilebox-one">
+        <div class="card-box tilebox-one bg-dark">
             <i class="ti-reload float-right m-0 h2 text-success"></i>
             <h6 class="text-muted text-uppercase mt-0">RoI</h6>
             <h3 class="my-3 card-poin"><?= $currentRoi->roi ?> %</h3>
-            <span>Rate sekarang</span>
+            <span class="text-muted">Rate sekarang</span>
             <div class="text-right" style="margin-top: -24px;">
                 <a href="<?= Url::to(['/roi/index-admin']) ?>" class="btn btn-primary">Detail</a>
             </div>
@@ -83,7 +89,7 @@ $currentRoi = Roi::getCurrentRoi();
 
 <div class="row mb-4">
     <div class="col-6">
-        <div class="card-box tilebox-one">
+        <div class="card-box tilebox-one bg-dark">
             <i class="ti-money float-right m-0 h2 text-muted"></i>
             <h6 class="text-muted text-uppercase mt-0">Total Deposit Member</h6>
             <?php $totalDeposit = Deposit::getBalanceDistributor($member); ?>
@@ -91,7 +97,7 @@ $currentRoi = Roi::getCurrentRoi();
         </div>
     </div>
     <div class="col-6">
-        <div class="card-box tilebox-one">
+        <div class="card-box tilebox-one bg-dark">
             <i class="ti-money float-right m-0 h2 text-muted"></i>
             <h6 class="text-muted text-uppercase mt-0">Total Withdraw Member</h6>
             <?php $totalWithdraw = Withdraw::getBalanceDistributor($member); ?>
@@ -104,7 +110,7 @@ $currentRoi = Roi::getCurrentRoi();
 
     <?php foreach (Paket::find()->all() as $paket) { ?>
         <div class="col-md-6 col-xl-3">
-            <div class="card-box tilebox-one">
+            <div class="card-box tilebox-one bg-dark">
                 <i class="icon-people float-right m-0 h2 text-muted"></i>
                 <h6 class="text-muted text-uppercase mt-0"><?= $paket->name ?></h6>
                 <h3 class="my-3" data-plugin="counterup">
@@ -125,3 +131,5 @@ $currentRoi = Roi::getCurrentRoi();
     <?php } ?>
 
 </div>
+
+*/ ?>

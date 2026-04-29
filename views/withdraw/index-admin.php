@@ -35,7 +35,7 @@ echo \app\widgets\Breadcrumbs::widget([
             </div>
         </div>
 
-        <div class="member-index card-box shadow mb-4">
+        <div class="member-index card-box shadow mb-4 bg-dark">
             <div class="mb-4">
                 <h4 class="header-title" style="">
                     <?= $this->title ?>
@@ -45,7 +45,7 @@ echo \app\widgets\Breadcrumbs::widget([
                 <?= \app\widgets\DataTables::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
-                'tableOptions' => ['class' => 'table table-hover table-bordered'],
+                'tableOptions' => ['class' => 'table table-hover table-bordered text-muted bg-dark'],
                 'clientOptions' => [
                 'dom' => 'lfrtipB',
                 'buttons' => ['copy', 'csv', 'excel', 'pdf', 'print']
@@ -127,7 +127,7 @@ echo \app\widgets\Breadcrumbs::widget([
                         'approve' => function ($url, $model) {     
                             if ($model->status == Withdraw::SUCCESS) {
                                 $html = <<<HTML
-                                    <a href="javascript:void(0)" disabled="disabled" title="Approve"><i class="ti-check-box text-muted"></i></a>
+                                    <a href="javascript:void(0)" disabled="disabled" title="Approve"><i class="ti-check-box"></i></a>
                                 HTML;
                                 return $html;
                             }

@@ -23,6 +23,10 @@ class Paket extends \yii\db\ActiveRecord
     const TYPE_BISNIS = 3;
     const TYPE_STOKIS = 4;
 
+    const TYPE_STARTER = 1;
+    const TYPE_PRO = 2;
+    const TYPE_VIP = 3;
+
     /**
      * {@inheritdoc}
      */
@@ -37,7 +41,7 @@ class Paket extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['price', 'poin', 'is_active'], 'integer'],
+            [['price', 'poin', 'is_active', 'diskon_persen'], 'integer'],
             [['name', 'remark'], 'string', 'max' => 255],
         ];
     }
@@ -54,6 +58,7 @@ class Paket extends \yii\db\ActiveRecord
             'poin' => 'Poin',
             'remark' => 'Keterangan',
             'is_active' => 'Is Active',
+            'diskon_persen' => 'Diskon (%)',
         ];
     }
 

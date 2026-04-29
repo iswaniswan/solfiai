@@ -26,6 +26,16 @@ $cookie = new Cookie([
     'expire' => time() + 3600, // Cookie expiration time (in seconds)
 ]);
 
+// if ($darkMode != null and $darkMode == true) {
+// } else {
+//     \app\assets\UplonAsset::register($this);
+
+//     $cookie = new Cookie([
+//         'name' => 'dark-mode',
+//         'value' => false,
+//         'expire' => time() + 3600, // Cookie expiration time (in seconds)
+//     ]);
+// }
 Yii::$app->response->cookies->add($cookie);
 
 $this->registerCsrfMetaTags();

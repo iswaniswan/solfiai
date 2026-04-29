@@ -16,14 +16,16 @@ AppAsset::register($this);
 $request = Yii::$app->request;
 $darkMode = $request->cookies->getValue('dark-mode');
 
+\app\assets\UplonAssetDark::register($this);
+
+$cookie = new Cookie([
+    'name' => 'dark-mode',
+    'value' => true,
+    'expire' => time() + 3600, // Cookie expiration time (in seconds)
+]);
+
+/*
 if ($darkMode != null and $darkMode == true) {
-    \app\assets\UplonAssetDark::register($this);
-    
-    $cookie = new Cookie([
-        'name' => 'dark-mode',
-        'value' => true,
-        'expire' => time() + 3600, // Cookie expiration time (in seconds)
-    ]);
 } else {
     \app\assets\UplonAsset::register($this);
 
@@ -33,6 +35,7 @@ if ($darkMode != null and $darkMode == true) {
         'expire' => time() + 3600, // Cookie expiration time (in seconds)
     ]);
 }
+*/
 Yii::$app->response->cookies->add($cookie);
 
 $this->registerCsrfMetaTags();

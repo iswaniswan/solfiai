@@ -28,31 +28,31 @@ $itemsDistributor = [
 $itemsAdmin = [
     ['label' => 'Administrator','header' => true],
     ['label' => 'Dashboard', 'icon' => 'ti-dashboard', 'url' => ['/dashboard/index']],
-    ['label' => 'ROI', 'icon' => 'ti-reload', 'items' => [
-        ['label' => 'Setting', 'url' => ['/roi/index-admin']],
-        ['label' => 'Riwayat', 'url' => ['/roi/index-history-daily']],
-    ]],
+    // ['label' => 'ROI', 'icon' => 'ti-reload', 'items' => [
+    //     ['label' => 'Setting', 'url' => ['/roi/index-admin']],
+    //     ['label' => 'Riwayat', 'url' => ['/roi/index-history-daily']],
+    // ]],
     // ['label' => 'Tickets', 'icon' => 'ti-ticket', 'url' => ['/fund-ticket/index']],
     // ['label' => 'Distributors', 'icon' => 'ti-home', 'items' => [
     //     ['label' => 'My Distributors', 'url' =>['/member/index-admin-distributor']],
     //     ['label' => 'Register Distributor', 'url' =>['/member/create-admin-distributor']],
     // ]],
-    ['label' => 'Downlines', 'icon' => 'ti-link', 'items' => [
-        ['label' => 'My Downlines', 'url' =>['/member/index-admin-downline']],
-        ['label' => 'Binary Tree', 'url' =>['/member/index-member-binary-tree']],
-        ['label' => 'Register Downline', 'url' =>['/member/create-member-downline']],
-    ]],  
-    ['label' => 'Deposit Member', 'icon' =>'ti-bag', 'url' =>['/deposit/index-admin']],
+    // ['label' => 'Downlines', 'icon' => 'ti-link', 'items' => [
+    //     ['label' => 'My Downlines', 'url' =>['/member/index-admin-downline']],
+    //     ['label' => 'Binary Tree', 'url' =>['/member/index-member-binary-tree']],
+    //     ['label' => 'Register Downline', 'url' =>['/member/create-member-downline']],
+    // ]],  
+    ['label' => 'Deposit Member', 'icon' =>'ti-bag', 'url' =>['/deposit/index-admin']],    
     ['label' => 'Withdraw Member', 'icon' =>'ti-wallet', 'url' =>['/withdraw/index-admin']],
-    ['label' => 'Reward', 'icon' => 'ti-cup', 'items' => [
-        ['label' => 'Daftar Reward', 'url' =>['/reward/index-member']],
-        ['label' => 'Reward Member', 'url' =>['/reward-claimed']],
-    ]],
+    // ['label' => 'Reward', 'icon' => 'ti-cup', 'items' => [
+    //     ['label' => 'Daftar Reward', 'url' =>['/reward/index-member']],
+    //     ['label' => 'Reward Member', 'url' =>['/reward-claimed']],
+    // ]],
+    ['label' => 'Member', 'icon' => 'ti-user', 'url' => ['/member/index-admin']],
     ['label' => 'Master', 'icon' => 'ti-settings', 'items' => [
         ['label' => 'Paket', 'url' =>['/paket/index']],
-        ['label' => 'Reward', 'url' =>['/reward/index-admin']],
+        // ['label' => 'Reward', 'url' =>['/reward/index-admin']],
     ]],
-    ['label' => 'Member', 'icon' => 'ti-user', 'url' => ['/member/index-admin']],
 //    ['label' => 'Reward Member', 'icon' =>'ti-crown', 'url' =>['/reward-claimed']],
     // ['label' => 'User', 'icon' =>'ti-user', 'items'=>[
     //     ['label' => 'login', 'url' =>['/user']],
@@ -73,26 +73,29 @@ if ((Session::isDistributor() === false) or (Session::isDistributor() and Sessio
     $itemsDistributor = [];
 }
 
+/** items member */
 $items = [
     ['label' => 'Member','header' => true],
     ['label' => 'Dashboard', 'icon' => 'ti-dashboard', 'url' => ['/dashboard/index-member']],
+    ['label' => 'Paket', 'icon' => 'ti-bag', 'url' => ['/paket/index-member']],
     // ['label' => 'Tickets', 'icon' => 'ti-ticket', 'url' => ['/fund-ticket/index-member']],
-    ['label' => 'Deposit', 'icon' => 'ti-bag', 'items' => [
-        ['label' => 'Tambah', 'url' =>['/deposit/create-member']],
-        ['label' => 'Riwayat', 'url' =>['/deposit/history-member']],
-    ]], 
+    // ['label' => 'Deposit', 'icon' => 'ti-bag', 'items' => [
+    //     ['label' => 'Tambah', 'url' =>['/deposit/create-member']],
+    //     ['label' => 'Riwayat', 'url' =>['/deposit/history-member']],
+    // ]], 
     ['label' => 'Withdraw', 'icon' => 'ti-wallet', 'items' => [
-        ['label' => 'Tunai', 'url' =>['/withdraw/create-active']],
-        ['label' => 'Tabungan', 'url' =>['/withdraw/create-passive']],
+        ['label' => 'Saldo', 'url' =>['/withdraw/create-active']],
+        // ['label' => 'Tabungan', 'url' =>['/withdraw/create-passive']],
         ['label' => 'Riwayat', 'url' =>['/withdraw/history-member']],
     ]],   
-    ['label' => 'Downline', 'icon' => 'ti-link', 'items' => [
-        ['label' => 'My Downlines', 'url' =>['/member/index-member-downline-binary']],
-        ['label' => 'Binary Tree', 'url' =>['/member/index-member-binary-tree']],
-        ['label' => 'Register Downline', 'url' =>['/member/create-member-downline']],
-    ]],    
-    ['label' => 'Reward', 'icon' => 'ti-cup', 'url' => ['/reward/index-member']],
-    ['label' => 'Fund Statement', 'icon' => 'ti-book', 'url' => ['/member/index-fund-statement']],
+    // ['label' => 'Downline', 'icon' => 'ti-link', 'items' => [
+    //     ['label' => 'My Downlines', 'url' =>['/member/index-member-downline-binary']],
+    //     ['label' => 'Binary Tree', 'url' =>['/member/index-member-binary-tree']],
+    //     ['label' => 'Register Downline', 'url' =>['/member/create-member-downline']],
+    // ]],    
+    // ['label' => 'Reward', 'icon' => 'ti-cup', 'url' => ['/reward/index-member']],
+    // ['label' => 'Fund Statement', 'icon' => 'ti-book', 'url' => ['/member/index-fund-statement']],
+    ['label' => 'Profil', 'icon' => 'ti-user', 'url' => ['/member/index-view']],
     ['label' => 'Logout', 'icon'=>'ti-shift-right', 'url' => ['/site/logout'], 'template'=>'<a class="nav-link {active}" data-method="post" href="{url}" {target}>{icon} {label}</a>'],
 ];
 

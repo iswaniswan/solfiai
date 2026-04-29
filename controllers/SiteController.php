@@ -70,11 +70,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        if (Yii::$app->user->isGuest) {
-            return $this->actionLandingPage();
-            // return $this->redirect(['/site/login']);
+        // if (Yii::$app->user->isGuest) {
+        //     return $this->actionLandingPage();
+        //     // return $this->redirect(['/site/login']);
 
-        }
+        // }
         return $this->redirect(['/dashboard/index']);
     }
 
@@ -151,7 +151,7 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    public function actionRegister($params=[])
+    public function actionRegisterOld($params=[])
     {
         $referral = Yii::$app->request->get('referral');
         $area = 'PUSAT';
@@ -318,6 +318,137 @@ class SiteController extends Controller
         return $this->render('register', [
             'model' => $model,
             'area' => $area,
+            'referral' => $referral
+        ]);
+    }
+
+    public function actionRegister($params=[])
+    {
+        $referral = Yii::$app->request->get('referral');
+
+        $this->layout = 'main-register';
+        $model = new User();
+        if ($model->load(Yii::$app->request->post())) {
+            // var_dump($model); die();
+
+            $preRegistration = true;
+
+            /** referral is Admin */
+            $admin = User::findOne([
+                'id_role' => Role::ADMIN
+            ]);
+            $memberSponsor = Member::findOne([
+                'id_user' => $admin->id
+            ]);
+
+            if ($memberSponsor == null) {
+                Yii::$app->session->setFlash('error', 'Invalid Referral Code');
+                $preRegistration = false;
+            }
+
+            /** check email exist */
+            $isEmailExists = User::findOne(['email' => $model->email]);
+            if ($isEmailExists != null) {
+                Yii::$app->session->setFlash('error', 'Email Already Exists');
+                $preRegistration = false;
+            }
+
+            /** check username exists */
+            $isUsernameExists = User::findOne(['username' => $model->username]);
+            if ($isUsernameExists != null) {
+                Yii::$app->session->setFlash('error', 'Username Already Exists');
+                $preRegistration = false;
+            }
+
+            if ($preRegistration) {
+                $generatedPin = strval(rand(100000, 999999));
+                // save plain registration
+                $modelRegister = new Registration();
+                $modelRegister->username = $model->username;
+                $modelRegister->email = $model->email;
+                $modelRegister->phone = $model->phone;
+                $modelRegister->plain_password = $model->password;
+                $modelRegister->plain_pin = $generatedPin;
+                $modelRegister->sponsor_code = $model->registered_referral_code;
+
+                $plain_password = $model->password;
+                $hashPassword = Yii::$app->getSecurity()->generatePasswordHash($plain_password);
+                $model->password = $hashPassword;
+                $model->pin = $generatedPin;
+                $model->id_role = Role::MEMBER;
+
+                if ($modelRegister->save() && $model->save()) {
+                    if ($memberSponsor->isDistributor()) {
+                        $id_group = $memberSponsor->getGroupAsAdmin()->id_group;
+                    } else {
+                        if ($memberSponsor->isAdmin()) {
+                            $id_group = Groups::GROUP_ADMIN;
+                        } else {
+                            $id_group = $memberSponsor->groups->id_group;
+                        }
+                    }
+
+                    $availableSlot = Downline::findAvailableSlot($memberSponsor);
+
+                    $memberUpline = Member::findOne([
+                        'id' => $availableSlot['id_parent']
+                    ]);
+        
+                    /** create base member */
+                    $newMember = new Member([
+                        'id_user' => $model->id,
+                        'nama' => $model->nama,
+                        'id_member_sponsor' => $memberSponsor->id,
+                        'id_member_upline' => $memberUpline->id,
+                        'phone' => $model->phone,
+                        'bank' => $model->bank,
+                        'rekening' => $model->rekening,
+                        'rekening_an' => $model->rekening_an,
+                    ]);
+                    $newMember->save();       
+        
+                    /** create base downline */
+                    $downline = new Downline([
+                        'id_member' => $newMember->id,
+                        'id_sponsor' => $memberSponsor->id,
+                        'posisi' => $availableSlot['position'],
+                        'id_upline0' => $memberUpline->id,
+                        'id_group' => $id_group
+                    ]);
+                    if (!$downline->save()) {
+                        var_dump($downline->errors); die();
+                    }
+
+                    /** create base group */
+                    $group = new Groups([
+                        'id_group' => $id_group,
+                        'id_member' => $newMember->id,
+                        'is_admin_group' => 0
+                    ]);
+                    if (!$group->save()) {
+                        var_dump($group->errors); die();
+                    }
+    
+                    /** autologin model */
+                    $login = new LoginForm([
+                        'username' => $model->username,
+                        'password' => $plain_password
+                    ]);
+    
+                    $login->login();
+    
+                    Yii::$app->session->setFlash('success', 'Registration success');
+                    /** registration success, then send email */
+                    //$model->sendEmail();
+                    return $this->actionIndex();
+                } 
+            } 
+            Yii::$app->session->setFlash('error', 'An error occured when registration');
+        }
+
+        $model->password = '';
+        return $this->render('register', [
+            'model' => $model,
             'referral' => $referral
         ]);
     }

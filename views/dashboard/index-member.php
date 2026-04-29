@@ -24,7 +24,7 @@ echo \app\widgets\Breadcrumbs::widget([
         </div>
 
         <div class="col-sm-6">
-            <div class="card card-body">
+            <div class="card card-body bg-dark">
                 <h4 class="card-title">Halo <?= $username ?>,</h4>
                 <p class="card-text">Anda belum memiliki paket yang aktif.</p>
                 <a href="<?= Url::to(['paket/index-member']) ?>" class="btn btn-primary">Lihat Paket</a>
