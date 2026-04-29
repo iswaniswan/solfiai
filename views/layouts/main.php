@@ -25,11 +25,11 @@ use yii\web\Cookie;
 // if ($darkMode != null and $darkMode == true) {
 //     \app\assets\UplonAssetDark::register($this);
     
-//     $cookie = new Cookie([
-//         'name' => 'dark-mode',
-//         'value' => true,
-//         'expire' => time() + 3600, // Cookie expiration time (in seconds)
-//     ]);
+    $cookie = new Cookie([
+        'name' => 'dark-mode',
+        'value' => true,
+        'expire' => time() + 3600, // Cookie expiration time (in seconds)
+    ]);
 // } else {
 //     \app\assets\UplonAsset::register($this);
 

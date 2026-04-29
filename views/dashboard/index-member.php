@@ -1,10 +1,11 @@
 <?php
 /** @var yii\web\View $this */
+
+use app\assets\DropifyAsset;
 use app\components\Session;
 use yii\helpers\Url;
 
 $username = Session::getUsername();
-
 
 $this->title = 'Dashboard Member';
 $this->params['breadcrumbs'][] = $this->title;

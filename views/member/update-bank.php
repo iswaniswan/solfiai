@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = 'Sunting';
     ]
 ]); ?>
 
-<div class="row">
+<div class="row"> 
     <div class="col-8">
         <div class="dt-button-wrapper mb-2">
             <?php $id_member = Session::getIdMember(); ?>

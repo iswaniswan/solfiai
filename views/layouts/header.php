@@ -7,6 +7,7 @@ use app\models\Member;
 use yii\helpers\Url;
 use yii\web\UrlRule;
 use yii\web\View;
+use yii\helpers\Html;
 
  ?>
 
@@ -74,7 +75,7 @@ use yii\web\View;
                     <i class="mdi mdi-logout-variant"></i>
                     <span>Logout</span>
                 </a>
-
+                
             </div>
         </li>
     </ul>

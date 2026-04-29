@@ -15,7 +15,9 @@ if ($mode !== Mode::READ) {
 }
 $this->params['breadcrumbs'][] = ['label' => 'Member', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
+
 
 <?= \app\widgets\Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
