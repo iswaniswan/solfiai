@@ -22,6 +22,8 @@ use Yii;
  * @property RefMetodePembayaran $refMetodePembayaran
  * @property User $user
  * @property Member $member
+ * @property int|null $diskon_persen
+ * @property int|null $diskon_total
  */
 class Deposit extends \yii\db\ActiveRecord
 {
@@ -30,6 +32,7 @@ class Deposit extends \yii\db\ActiveRecord
 
     public $harga_paket;
     public $ref_metode_pembayaran_harga;
+    public $diskon_persen;
 
     /**
      * {@inheritdoc}
@@ -45,8 +48,8 @@ class Deposit extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_member', 'id_paket', 'id_ref_metode_pembayaran', 'status'], 'integer'],
-            [['total_bayar', 'id_transaksi', 'remark'], 'safe'],
+            [['id_member', 'id_paket', 'id_ref_metode_pembayaran', 'status', 'diskon_total'], 'integer'],
+            [['total_bayar', 'id_transaksi', 'remark', 'harga_paket','diskon_persen'], 'safe'],
             [['total_bayar', 'id_paket'], 'required'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],
         ];
@@ -68,7 +71,8 @@ class Deposit extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'deleted_at' => 'Deleted At',
-            'remark' => 'Keterangan'
+            'remark' => 'Keterangan',
+            'diskon_total' => 'Total Diskon'
         ];
     }
 

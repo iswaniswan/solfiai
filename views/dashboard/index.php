@@ -32,17 +32,34 @@ $currentRoi = Roi::getCurrentRoi();
 
 
 <div class="row mb-4">
-    <div class="col-md-6 col-xl-3">
+    <div class="col-lg-4 col-xl-4 col-md-12 col-sm-12 col-xs-12">
         <div class="card-box tilebox-one bg-dark">
             <i class="icon-people float-right m-0 h2 text-muted"></i>
+            <h6 class="text-muted text-uppercase mt-0">DAFTAR MEMBER</h6>
+            <h3 class="my-3" data-plugin="counterup">0</h3>
+        </div>
+    </div>
+    <div class="col-lg-4 col-xl-4 col-md-12 col-sm-12 col-xs-12">
+        <div class="card-box tilebox-one bg-dark">
+            <i class="ti-user float-right m-0 h2 text-muted"></i>
             <h6 class="text-muted text-uppercase mt-0">APPROVAL REGISTER</h6>
             <h3 class="my-3" data-plugin="counterup">0</h3>
         </div>
     </div>
-    <div class="col-md-6 col-xl-3">
+    <div class="col-lg-4 col-xl-4 col-md-12 col-sm-12 col-xs-12">
         <div class="card-box tilebox-one bg-dark">
             <i class="ti-money float-right m-0 h2 text-muted"></i>
             <h6 class="text-muted text-uppercase mt-0">APPROVAL WITHDRAW</h6>
+            <h3 class="my-3" data-plugin="counterup">0</h3>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-lg-4 col-xl-4 col-md-12 col-sm-12 col-xs-12">
+        <div class="card-box tilebox-one bg-dark">
+            <i class="ti-money float-right m-0 h2 text-muted"></i>
+            <h6 class="text-muted text-uppercase mt-0">DATA SALDO</h6>
             <h3 class="my-3" data-plugin="counterup">0</h3>
         </div>
     </div>

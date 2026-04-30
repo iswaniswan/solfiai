@@ -16,7 +16,7 @@ use app\models\FundTicket;
 use app\models\Groups;
 use app\models\Member;
 use app\models\Paket;
-use app\models\Role;
+use app\models\Bonus;
 use Exception;
 use PhpParser\Node\Expr\Throw_;
 use yii\web\Controller;
@@ -57,13 +57,8 @@ class DepositController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new DepositSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
-
-        return $this->render('index-admin', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        /** default action */
+        return $this->redirect(['deposit/create-member']);
     }
 
     public function actionIndexAdmin()
@@ -170,6 +165,15 @@ class DepositController extends Controller
             $model->total_bayar = $total_bayar;
 
             $model->id_transaksi = $model->generateNomorTransaksi();
+
+            $diskon_total = 0;
+            if ((int) $model->diskon_persen > 0) {
+                $harga_paket = @$model->paket->price != null ? $model->paket->price : $total_bayar;
+                $diskon_total = $harga_paket * $model->diskon_persen / 100;
+                $model->diskon_total = $diskon_total;
+            }
+
+            // echo "<pre>"; print_r($model->diskon_total); echo "</pre>"; die();
 
             if ($model->save()) {               
 
@@ -285,10 +289,9 @@ class DepositController extends Controller
 
     public function actionApprove($id) 
     {
-        $model = $this->findModel($id);
-
+        $model = $this->findModel($id);        
         // var_dump($model); die();
-
+        
         /** aktivasi member */
         $member = $model->member;
 
@@ -356,29 +359,29 @@ class DepositController extends Controller
         ]);
 
         /** cash back distributor */
-        if ($model->id_paket == Paket::TYPE_STOKIS) {
-            $cashback = 10 * $model->paket->price / 100;
+        // if ($model->id_paket == Paket::TYPE_STOKIS) {
+        //     $cashback = 10 * $model->paket->price / 100;
 
-            $fund = new FundPassive([
-                'id_member' => $member->id,
-                'credit' => $cashback,
-                'id_trx' => $model->id_transaksi,
-                'id_fund_ref' => FundRef::CASHBACK
-            ]);
+        //     $fund = new FundPassive([
+        //         'id_member' => $member->id,
+        //         'credit' => $cashback,
+        //         'id_trx' => $model->id_transaksi,
+        //         'id_fund_ref' => FundRef::CASHBACK
+        //     ]);
 
-            $fund->save();
-        }
+        //     $fund->save();
+        // }
 
         Yii::$app->session->setFlash('success', 'Success');
 
-        if (Session::isDistributor()) {
-            return $this->redirect(['deposit/index-distributor']);
-        }
+        // if (Session::isDistributor()) {
+        //     return $this->redirect(['deposit/index-distributor']);
+        // }
 
-        return $this->redirect(['deposit/index']);
+        return $this->redirect(['deposit/index-admin']);
     }
 
-    protected function applyBonusMember(Member $member, Deposit $deposit)
+    protected function applyBonusMemberOld(Member $member, Deposit $deposit)
     {
         $omzet = $member->paket->price;
 
@@ -412,6 +415,41 @@ class DepositController extends Controller
 
             $fund->save();
         }
+    }
+
+    protected function applyBonusMember(Member $member, Deposit $deposit)
+    {
+        $omzet = $member->paket->price;
+        if ((int) @$member->paket->diskon_persen > 0) {
+            $omzet = $omzet - ($omzet * $member->paket->diskon_persen / 100);
+        }
+
+        $bonus = Bonus::find()
+            ->where(['status' => Bonus::ACTIVE])
+            ->orderBy(['level' => SORT_ASC])
+            ->all();
+
+        foreach ($bonus as $bonusModel) {
+            $bonusValue = $omzet * $bonusModel->persen / 100;
+
+            /** bonus level */
+            $upline = Downline::getUpperLevel($member->id, $bonusModel->level);
+
+            if ($upline == null) {
+                return;
+            }
+
+            $fund = new FundActive([
+                'id_member' => $upline->id,
+                'credit' => $bonusValue,
+                'id_trx' => $deposit->id_transaksi,
+                'id_fund_ref' => FundRef::LEVEL,
+                'remark' => $bonusModel->keterangan != null ? $bonusModel->keterangan : 'Bonus Level ' . $bonusModel->level
+            ]);
+
+            $fund->save();
+        }
+
     }
 
     public function actionCreateMemberRo()

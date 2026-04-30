@@ -69,15 +69,15 @@ $this->registerCss($style);
 
 <div class="row">
     <div class="col-6">
-        <div class="card-box tilebox-one">
+        <div class="card-box tilebox-one bg-dark">
             <i class="ti-money float-right m-0 h2 text-muted"></i>
-            <h6 class="text-muted text-uppercase mt-0">Saldo Tunai</h6>
+            <h6 class="text-muted text-uppercase mt-0">Saldo Referal</h6>
             <?php $balanceActive = FundActive::getBalance($model->id_member); ?>
             <h3 class="my-3 text-success"><?= "IDR. " . number_format($balanceActive, 0, ",", ".") ?></h3>
         </div>
     </div>
     <div class="col-6">
-        <div class="card-box tilebox-one">
+        <div class="card-box tilebox-one bg-dark">
             <i class="ti-money float-right m-0 h2 text-muted"></i>
             <h6 class="text-muted text-uppercase mt-0">Total Withdraw</h6>
             <?php $totalWithdraw = FundActive::totalWithdraw($model->id_member); ?>
@@ -88,7 +88,7 @@ $this->registerCss($style);
 
 <div class="row">
     <div class="col-6">        
-        <div class="member-form card-box">
+        <div class="member-form card-box bg-dark">
             <div class="card-body row">
                 <div class="col-12" style="border-bottom: 1px solid #ccc; margin-bottom: 1rem;">
                     <h4 class="card-title mb-3"><?= $this->title ?></h4>
@@ -156,7 +156,7 @@ $this->registerCss($style);
         </div>
     </div>
     <div class="col-6">
-        <div class="card-box">
+        <div class="card-box bg-dark">
             <div class="card-body row">
                 <div class="col-12" style="border-bottom: 1px solid #ccc; margin-bottom: 2rem;">
                     <h4 class="card-title mb-3">Informasi Withdraw</h4>

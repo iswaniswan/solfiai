@@ -237,13 +237,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 <section>
                     <div class="field-email required mb-4">
                         <label class="col-12" style="padding-left: unset" for="email">Email</label>
-                        <input type="email" id="email" class="col-12 form-control" name="User[email]" required="" aria-required="true">
+                        <input type="email" id="email" class="col-12 form-control" name="User[email]" required="" autocomplete="off" aria-required="true" required>
                     </div>
 
                     <div class="field-harga_paket  mb-4" style="padding:unset">
                         <label class="col-12" style="padding-left: unset" for="username">User ID</label>
                         <div class="input-group">
-                            <input type="text" class="col-12 form-control " name="User[username]" id="username" required>
+                            <input type="text" class="col-12 form-control " name="User[username]" id="username" autocomplete="off" required>
                             <div class="input-group-append">
                                 <button type="button" class="btn btn-primary btn-sm" onclick="generateUsername()" title="Generate">
                                     <i class="ti-shield px-2 text-white"></i>
@@ -255,7 +255,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="field-harga_paket  mb-4" style="padding:unset">
                         <label class="col-12" style="padding-left: unset" for="password">Password</label>
                         <div class="input-group">
-                            <input type="text" class="col-12 form-control " name="User[password]" id="password" minlength='8' required>
+                            <input type="text" class="col-12 form-control " name="User[password]" id="password" minlength='8' autocomplete="off" required>
                             <div class="input-group-append">
                                 <button type="button" class="btn btn-primary btn-sm" onclick="generatePassword()" title="Generate">
                                     <i class="ti-shield px-2 text-white"></i>
@@ -266,12 +266,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <div class="field-phone  mb-4" style="padding:unset">
                         <label class="col-12" style="padding-left: unset" for="phone">No Handphone</label>
-                        <input type="text" class="col-12 form-control" pattern="[0-9]*" inputmode="numeric" name="User[phone]" id="phone" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
+                        <input type="text" class="col-12 form-control" pattern="[0-9]*" inputmode="numeric" name="User[phone]" id="phone" oninput="this.value = this.value.replace(/[^0-9]/g, '');" autocomplete="off" required>
                     </div>
 
                     <div class="field-telegram_id mb-4" style="padding:unset">
                         <label class="col-12" style="padding-left: unset" for="telegram_id">ID Telegram</label>
-                        <input type="text" class="col-12 form-control " name="User[telegram_id]" id="telegram_id" required>
+                        <input type="text" class="col-12 form-control " name="User[telegram_id]" id="telegram_id" autocomplete="off" required>
                     </div>
 
                 </section>

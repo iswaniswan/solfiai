@@ -9014,3 +9014,7 @@ a.text-dark:focus {
 h6.text-uppercase {
     font-weight: 700;
 }
+
+input[readonly] {
+    pointer-events: none !important;
+}

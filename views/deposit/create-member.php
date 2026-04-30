@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ]) ?>
 
 
+
 <?php $form = ActiveForm::begin([
     'layout' => 'horizontal',
     'enableAjaxValidation' => false,
@@ -113,7 +114,16 @@ $this->registerCss($style);
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">IDR</span>
                                 </div>
-                                <input type="text" class="form-control" id="harga_paket" name="Deposit[harga_paket]" value="<?= number_format(@$model->harga_paket, 0, ",", ".") ?>" required>
+                                <?php $hargaPaket = number_format(@$model->paket->price, 0, ",", "."); ?>
+                                <input type="hidden" id="harga_paket" name="Deposit[harga_paket]" value="<?= $hargaPaket ?>" required readonly>
+
+                                <?php if ((int) $model->paket->diskon_persen > 0) {
+                                    $hargaPaket = number_format(@$model->paket->price, 0, ",", ".") . " (Diskon " . $model->paket->diskon_persen . "%)";
+                                }
+                                
+                                ?>                                
+                                <input type="text" class="form-control" id="harga_paket_text" name="Deposit[harga_paket_text]" value="<?= $hargaPaket ?>" required readonly>
+                                <input type="hidden" id="diskon_persen" name="Deposit[diskon_persen]" value="<?= @$model->paket->diskon_persen ?? 0 ?>" required readonly>
                             </div>
                         </div>
                     </div>
@@ -145,7 +155,7 @@ $this->registerCss($style);
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">IDR</span>
                                 </div>
-                                <input type="text" class="form-control" id="biaya" name="Deposit[biaya]" required>
+                                <input type="text" class="form-control" id="biaya" name="Deposit[biaya]" required readonly>
                             </div>
                         </div>
                     </div>
@@ -163,7 +173,7 @@ $this->registerCss($style);
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">IDR</span>
                                 </div>
-                                <input type="text" class="form-control" id="total_bayar" name="Deposit[total_bayar]" required>
+                                <input type="text" class="form-control" id="total_bayar" name="Deposit[total_bayar]" required readonly>
                             </div>
                         </div>
                     </div>
@@ -241,20 +251,30 @@ $script = <<<JS
                 "{$csrfParam}": "{$csrfToken}"
             },
             success: function(response) {
-                let price = null;
+                let price = null; let diskon = null;
+                $('#diskon_persen').val(diskon);
                 $('#harga_paket').val(price);
+                $('#harga_paket_text').val(price);
 
                 const data = response?.data;                
 
                 if (response?.data?.price != null && response?.data?.price != '') {
                     price = data?.price.toLocaleString("id", { maximumFractionDigits: 2 });
                     $('#harga_paket').val(price);
+
+                    diskon = parseFloat(data?.diskon_persen) || 0;
+                    if (diskon > 0) {
+                        price = price + " (Diskon " + diskon + "%)";
+                    }
+                    $('#harga_paket_text').val(price);
+                    $('#diskon_persen').val(diskon);
                 }
 
                 isDistributorSelected();
             },
             error: function(error) {
                 console.log(error);
+                $('#diskon_persen').val(diskon);
             }
         });
     });
@@ -320,6 +340,12 @@ $script = <<<JS
         let biaya = $('#biaya').val().replaceAll(".", "");
         totalBayar = parseFloat(hargaPaket) + parseFloat(biaya);
 
+        let diskonPersen = parseFloat($('#diskon_persen').val()) || 0;
+        if (diskonPersen > 0) {
+            const diskonAmount = totalBayar * diskonPersen / 100;
+            totalBayar = totalBayar - diskonAmount;
+        }
+
         if (isNaN(totalBayar)) {
             totalBayar = 0;
         }        
@@ -327,6 +353,7 @@ $script = <<<JS
         const myTicket = 1; //$('#my-ticket').val();
 
         if (totalBayar > 0) {
+
             $('#total_bayar').val(totalBayar.toLocaleString("id", { maximumFractionDigits: 2 }))
             if (myTicket > 0) {
                 toggleSubmit(true)

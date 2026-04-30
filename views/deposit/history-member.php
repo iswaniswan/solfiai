@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $show = ($index == 0) ? 'show' : ''; ?> 
         
         <div class="col-12" id="accordion<?= $index ?>">
-            <div class="tilebox-one">
+            <div class="tilebox-one bg-dark">
                 <div class="card-header" id="headingOne<?= $index ?>">
                     <div class="row">
                         <div class="col-1">
@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
 
                 <div id="collapseOne<?= $index ?>" class="collapse <?= $show ?>" aria-labelledby="headingOne" data-parent="#accordion<?= $index ?>">
-                    <div class="card-box tilebox-one">
+                    <div class="card-box tilebox-one bg-dark">
                         <div class="row" style="display: flex;">
                             <h6 class="col-3 offset-md-1">Member</h6>
                             <h6 class="col-6 text-muted"><?= strtoupper(@$model->member->nama) ?></h6>
@@ -72,6 +72,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="row" style="display: flex;">
                             <h6 class="col-3 offset-md-1">Biaya</h6>
                             <h6 class="col-6 text-muted">IDR. <?= number_format(@$model->refMetodePembayaran->harga, 0, ",", ".") ?></h6>
+                        </div>  
+                        <div class="row" style="display: flex;">
+                            <h6 class="col-3 offset-md-1">Diskon</h6>
+                            <h6 class="col-6 text-muted">IDR. <?= number_format(@$model->diskon_total, 0, ",", ".") ?></h6>
                         </div>  
                         <div class="row" style="display: flex;">
                             <h6 class="col-3 offset-md-1">Total</h6>

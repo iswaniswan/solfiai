@@ -37,11 +37,11 @@ $itemsAdmin = [
     //     ['label' => 'My Distributors', 'url' =>['/member/index-admin-distributor']],
     //     ['label' => 'Register Distributor', 'url' =>['/member/create-admin-distributor']],
     // ]],
-    // ['label' => 'Downlines', 'icon' => 'ti-link', 'items' => [
-    //     ['label' => 'My Downlines', 'url' =>['/member/index-admin-downline']],
-    //     ['label' => 'Binary Tree', 'url' =>['/member/index-member-binary-tree']],
-    //     ['label' => 'Register Downline', 'url' =>['/member/create-member-downline']],
-    // ]],  
+    ['label' => 'Downlines', 'icon' => 'ti-link', 'items' => [
+        ['label' => 'My Downlines', 'url' =>['/member/index-admin-downline']],
+        ['label' => 'Binary Tree', 'url' =>['/member/index-member-binary-tree']],
+        ['label' => 'Register Downline', 'url' =>['/member/create-member-downline']],
+    ]],  
     ['label' => 'Deposit Member', 'icon' =>'ti-bag', 'url' =>['/deposit/index-admin']],    
     ['label' => 'Withdraw Member', 'icon' =>'ti-wallet', 'url' =>['/withdraw/index-admin']],
     // ['label' => 'Reward', 'icon' => 'ti-cup', 'items' => [
@@ -51,6 +51,7 @@ $itemsAdmin = [
     ['label' => 'Member', 'icon' => 'ti-user', 'url' => ['/member/index-admin']],
     ['label' => 'Master', 'icon' => 'ti-settings', 'items' => [
         ['label' => 'Paket', 'url' =>['/paket/index']],
+        ['label' => 'Bonus', 'url' =>['/bonus/index']],
         // ['label' => 'Reward', 'url' =>['/reward/index-admin']],
     ]],
 //    ['label' => 'Reward Member', 'icon' =>'ti-crown', 'url' =>['/reward-claimed']],

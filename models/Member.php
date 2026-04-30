@@ -43,6 +43,7 @@ use yii\web\UploadedFile;
  * @property Member $downlineRight
  * @property Member $downlineLeft
  * @property Subdomain $subdomain
+ * @property string|null $telegram_id
  */
 class Member extends \yii\db\ActiveRecord
 {
@@ -79,7 +80,7 @@ class Member extends \yii\db\ActiveRecord
                 'is_deleted', 'id_member_approved_by'], 'safe'],
             [['info'], 'string'],
             [['date_active', 'date_created'], 'safe'],
-            [['nama', 'alamat', 'kotakab', 'provinsi', 'referral_code', 'photo'], 'string', 'max' => 255],
+            [['nama', 'alamat', 'kotakab', 'provinsi', 'referral_code', 'photo', 'telegram_id'], 'string', 'max' => 255],
             [['no_ktp'], 'string', 'max' => 16],
             [['phone'], 'string', 'max' => 15],
             [['kodepos', 'rekening', 'rekening_an'], 'string', 'max' => 100],
@@ -122,6 +123,7 @@ class Member extends \yii\db\ActiveRecord
             'date_active' => 'Date Active',
             'date_created' => 'Date Created',
             'is_deleted' => 'Is Deleted',
+            'telegram_id' => 'Telegram ID',
         ];
     }
 

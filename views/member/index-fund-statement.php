@@ -43,7 +43,7 @@ $allDownline = \yii\helpers\ArrayHelper::toArray($allDownline);
         </div>
     </div>
     <div class="col-sm-12">            
-        <div class="card-box">
+        <div class="card-box bg-dark">
             <div class="mb-4">
                 <h4 class="header-title" style="">
                     <?= $this->title ?>
@@ -51,8 +51,8 @@ $allDownline = \yii\helpers\ArrayHelper::toArray($allDownline);
             </div>
 
             <div class="table-responsive">
-                <table class="table mb-0">
-                    <thead class="thead-light">
+                <table class="table table-bordered table-hover mb-0 bg-dark text-muted">
+                    <thead class="">
                     <tr>
                         <th>#</th>
                         <th>Tanggal</th>

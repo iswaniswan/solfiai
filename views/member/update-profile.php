@@ -96,9 +96,11 @@ DropifyAsset::register($this);
 
                     <?= $form->field($model, 'no_ktp')->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'phone')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
-                    <?= $form->field($model, 'alamat')->textInput(['maxlength' => true]) ?>                    
+                    <?= $form->field($model, 'alamat')->textInput(['maxlength' => true]) ?>
+
+                    <?= $form->field($model, 'telegram_id')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
                 </div>
                 <?= Html::hiddenInput('referrer', $referrer) ?>
