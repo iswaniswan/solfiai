@@ -9018,3 +9018,7 @@ h6.text-uppercase {
 input[readonly] {
     pointer-events: none !important;
 }
+
+table.bg-dark thead {
+    color: var(--white);
+}

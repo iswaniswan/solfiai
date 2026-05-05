@@ -326,10 +326,36 @@ class SiteController extends Controller
     {
         $referral = Yii::$app->request->get('referral');
 
+        
         $this->layout = 'main-register';
         $model = new User();
         if ($model->load(Yii::$app->request->post())) {
             // var_dump($model); die();
+
+            /** check referral code */
+            if (strtolower(@$model->registered_referral_code) == 'pusat' || strval(@$model->registered_referral_code) == '') {
+                /** referral is Admin */
+                $admin = User::findOne([
+                    'id_role' => Role::ADMIN
+                ]);
+                $memberSponsor = Member::findOne([
+                    'id_user' => $admin->id
+                ]);                
+
+            } else {                
+                $memberSponsor = Member::findOne([
+                    'referral_code' => $model->registered_referral_code,
+                    'is_active' => 1
+                ]);
+
+                if ($memberSponsor == null) {
+                    Yii::$app->session->setFlash('error', 'Invalid Referral Code');
+                    return $this->render('register', [
+                        'model' => $model,
+                        'referral' => $referral
+                    ]);
+                }
+            }
 
             $preRegistration = true;
 

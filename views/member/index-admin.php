@@ -55,20 +55,23 @@ echo \app\widgets\Breadcrumbs::widget([
                     'headerOptions' => ['style' => 'text-align:left; width: 35px'],
                     'contentOptions' => ['style' => 'text-align:left'],
                     ],
-                [
-                    'attribute' => 'nama',
-                    'format' => 'raw',
-                    'value' => function($model) {
-                        return @$model->nama;
-                    },
-                    'headerOptions' => ['style' => 'text-align:left;'],
-                    'contentOptions' => ['style' => 'text-align:left'],
+                    [
+                        'attribute' => 'username',
+                        'format' => 'raw',
+                        'value' => function ($model) {
+                            return @$model->user->username;
+                        },
+                        'headerOptions' => ['style' => 'text-align:left;'],
+                        'contentOptions' => ['style' => 'text-align:left'],
                     ],
                     [
                     'attribute' => 'id_paket',
                     'format' => 'raw',
                     'value' => function ($model) {
-                        return strtoupper(@$model->paket->name);
+                        if (@$model->paket->name != null) {
+                            return strtoupper(@$model->paket->name);
+                        }
+                        return '-';
                     },
                     'headerOptions' => ['style' => 'text-align:left;'],
                     'contentOptions' => ['style' => 'text-align:left'],
@@ -79,16 +82,23 @@ echo \app\widgets\Breadcrumbs::widget([
                         'header' => 'Tanggal Daftar',
                         'headerOptions' => ['style' => 'text-align:left;'],
                         'contentOptions' => ['style' => 'text-align:left'],
-                        ],
+                        'value' => function($model) {
+                                return date('d M Y H:i', strtotime(@$model->date_created));
+                            }
+                        ],    
                     [
-                        'attribute' => 'username',
+                        'attribute' => 'referral_code',
                         'format' => 'raw',
-                        'value' => function ($model) {
-                            return @$model->user->username;
-                        },
+                        'header' => 'Kode Referral',
                         'headerOptions' => ['style' => 'text-align:left;'],
                         'contentOptions' => ['style' => 'text-align:left'],
-                    ],
+                        'value' => function($model) {
+                                if (@$model->referral_code != null) {
+                                    return @$model->referral_code;
+                                }
+                                return '-';
+                            }
+                        ],                 
                      [
                              'header' => 'Aksi',
                          'class' => 'yii\grid\ActionColumn',

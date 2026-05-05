@@ -133,7 +133,7 @@ class RoiController extends Controller
 
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Create success.');
-                return $this->redirect($referrer);
+                return $this->redirect(['index-admin']);
             }
 
             Yii::$app->session->setFlash('error', 'An error occured when create.');

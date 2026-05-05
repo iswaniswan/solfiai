@@ -3,6 +3,7 @@
 /** @var yii\web\View $this */
 /** @var yii\bootstrap5\ActiveForm $form */
 /** @var app\models\LoginForm $model */
+/** @var String|null $referral */
 
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
@@ -246,7 +247,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <input type="text" class="col-12 form-control " name="User[username]" id="username" autocomplete="off" required>
                             <div class="input-group-append">
                                 <button type="button" class="btn btn-primary btn-sm" onclick="generateUsername()" title="Generate">
-                                    <i class="ti-shield px-2 text-white"></i>
+                                    <i class="ti-reload px-2 text-white"></i>
                                 </button>
                             </div>
                         </div>
@@ -258,7 +259,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <input type="text" class="col-12 form-control " name="User[password]" id="password" minlength='8' autocomplete="off" required>
                             <div class="input-group-append">
                                 <button type="button" class="btn btn-primary btn-sm" onclick="generatePassword()" title="Generate">
-                                    <i class="ti-shield px-2 text-white"></i>
+                                    <i class="ti-reload px-2 text-white"></i>
                                 </button>
                             </div>
                         </div>
@@ -273,6 +274,24 @@ $this->params['breadcrumbs'][] = $this->title;
                         <label class="col-12" style="padding-left: unset" for="telegram_id">ID Telegram</label>
                         <input type="text" class="col-12 form-control " name="User[telegram_id]" id="telegram_id" autocomplete="off" required>
                     </div>
+
+                    <?php 
+                    $referralValue = null;
+                    $attribute = '';
+                    if (@$referral != null) {
+                        $referralValue = $referral;
+                        $attribute = 'readonly';
+                    }
+                    
+                    ?>
+                    <div class="mb-4 field-referral-code">
+                        <label class="col-12" style="padding-left: unset" for="referral-code">Referral Code</label>
+                        <input type="text" id="referral_code" maxlength="8" class="col-12 form-control" 
+                            name="User[registered_referral_code]" 
+                            value="<?= $referralValue ?>" aria-required="true" 
+                            aria-invalid="false" <?= $attribute ?>
+                            placeholder="Masukkan kode referral (jika ada)">
+                    </div>  
 
                 </section>
             </div>
@@ -508,6 +527,25 @@ $script = <<<JS
         })
         
     })
+
+    // const confirmSubmit = () => {
+    //     const referral = $('#referral_code').val() || '';
+    //     if (referral == '') {
+    //         return confirm("Lanjutkan Daftar Tanpa Kode Referral?");
+    //     }
+    // }
+
+    $('button[type="submit"]').on('click', function(e) {
+        const referral = $('#referral_code').val() || '';
+
+        if (referral === '') {
+            if (!confirm("Lanjutkan Daftar Tanpa Kode Referral?")) {
+                e.preventDefault(); // cancel submit kalau user pilih Cancel
+                return;
+            }
+        }
+        // kalau ada referral ATAU user klik OK → biarkan submit jalan
+    });
 
 
 JS;

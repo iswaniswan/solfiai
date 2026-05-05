@@ -34,7 +34,7 @@ echo \app\widgets\Breadcrumbs::widget([
                 <?= \app\widgets\DataTables::widget([
                         'dataProvider' => $dataProvider,
                         'filterModel' => $searchModel,
-                        'tableOptions' => ['class' => 'table table-hover table-bordered'],
+                        'tableOptions' => ['class' => 'table table-hover table-bordered bg-dark text-muted'],
                         'clientOptions' => [
                         'dom' => 'lfrtipB',
                         'buttons' => ['copy', 'csv', 'excel', 'pdf', 'print']
@@ -45,7 +45,8 @@ echo \app\widgets\Breadcrumbs::widget([
                             'attribute' => 'nama',
                             'format' => 'raw',
                             'value' => function ($model) {
-                                return ucwords(@$model->nama);
+                                $username = $model->user->username;
+                                return $username;
                             },
                             'headerOptions' => ['style' => 'text-align:left;'],
                             'contentOptions' => ['style' => 'text-align:left'],
@@ -55,14 +56,16 @@ echo \app\widgets\Breadcrumbs::widget([
                             'format' => 'raw',
                             'header' => 'Paket',
                             'value' => function ($model) {
-                                if (@$model->paket == null) {
-                                    $html = <<<html
-                                        <span class="badge badge-pill badge-secondary" style="padding: 4px 8px;">INACTIVE</span>
-                                    html;
-
-                                    return $html;
+                                $paket = 'INACTIVE';
+                                $badgeClass = 'secondary';
+                                if (@$model->paket != null) {
+                                    $paket = strtoupper(@$model->paket->name);
+                                    $badgeClass = 'success';
                                 }
-                                return strtoupper(@$model->paket->name);
+                                $html = <<<html
+                                    <span class="badge badge-pill badge-$badgeClass" style="padding: 4px 8px;">$paket</span>
+                                html;
+                                return $html;                                
                             },
                             'headerOptions' => ['style' => 'text-align:left;'],
                             'contentOptions' => ['style' => 'text-align:left'],

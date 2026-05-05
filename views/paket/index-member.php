@@ -54,7 +54,7 @@ echo \app\widgets\Breadcrumbs::widget([
                         <?php 
                         $url = Url::to(['deposit/create-member', 'id_paket' => $model->id]);
                         $urlExt = 'https://solfi-ai.com/#pricing';
-                        $html = '<a href="'.$urlExt.'" target="_blank" class="btn btn-primary btn-rounded waves-effect waves-light float-right">Detail</a>';
+                        $html = '<a href="'.$url.'" target="_blank" class="btn btn-primary btn-rounded waves-effect waves-light float-right">Detail</a>';
                         
                         echo $html;
                         ?>
@@ -86,7 +86,7 @@ echo \app\widgets\Breadcrumbs::widget([
                         <?php 
                         $url = Url::to(['deposit/create-member', 'id_paket' => $model->id]);
                         $urlExt = 'https://solfi-ai.com/#pricing';
-                        $html = '<a href="'.$urlExt.'" target="_blank" class="btn btn-primary btn-rounded waves-effect waves-light float-right">Detail</a>';
+                        $html = '<a href="'.$url.'" target="_blank" class="btn btn-primary btn-rounded waves-effect waves-light float-right">Detail</a>';
                         
                         echo $html;
                         ?>

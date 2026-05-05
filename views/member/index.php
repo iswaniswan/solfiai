@@ -73,14 +73,17 @@ echo \app\widgets\Breadcrumbs::widget([
                     },
                     'headerOptions' => ['style' => 'text-align:left;'],
                     'contentOptions' => ['style' => 'text-align:left'],
-                    ],
-                    [
-                        'attribute' => 'date_created',
-                        'format' => 'raw',
-                        'header' => 'Tanggal Daftar',
-                        'headerOptions' => ['style' => 'text-align:left;'],
-                        'contentOptions' => ['style' => 'text-align:left'],
-                        ],
+                ],
+                [
+                'attribute' => 'date_created',
+                'format' => 'raw',
+                'header' => 'Tanggal Daftar',
+                'headerOptions' => ['style' => 'text-align:left;'],
+                'contentOptions' => ['style' => 'text-align:left'],
+                'value' => function($model) {
+                        return date('d M Y', strtotime(@$model->date_created));
+                    }
+                ],
                     // [
                     //     'class' => 'yii\grid\ActionColumn',
                     //     'template' => '{view} {update} {delete}',

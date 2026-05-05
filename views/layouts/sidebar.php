@@ -28,10 +28,10 @@ $itemsDistributor = [
 $itemsAdmin = [
     ['label' => 'Administrator','header' => true],
     ['label' => 'Dashboard', 'icon' => 'ti-dashboard', 'url' => ['/dashboard/index']],
-    // ['label' => 'ROI', 'icon' => 'ti-reload', 'items' => [
-    //     ['label' => 'Setting', 'url' => ['/roi/index-admin']],
-    //     ['label' => 'Riwayat', 'url' => ['/roi/index-history-daily']],
-    // ]],
+    ['label' => 'ROI', 'icon' => 'ti-reload', 'items' => [
+        ['label' => 'Setting', 'url' => ['/roi/index-admin']],
+        ['label' => 'Riwayat', 'url' => ['/roi/index-history-daily']],
+    ]],
     // ['label' => 'Tickets', 'icon' => 'ti-ticket', 'url' => ['/fund-ticket/index']],
     // ['label' => 'Distributors', 'icon' => 'ti-home', 'items' => [
     //     ['label' => 'My Distributors', 'url' =>['/member/index-admin-distributor']],
