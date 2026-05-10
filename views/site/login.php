@@ -157,6 +157,8 @@ $this->params['breadcrumbs'][] = $this->title;
     color: var(--primary-color);
     text-decoration: none;
   }
+
+  
 </style>
 
 <div class="row mb-4 justify-content-center box-center">
@@ -269,7 +271,7 @@ $(document).ready(function() {
     })        
 })
 
-
+console.log('dark mode cookie: ' + document.cookie);
 JS;
 
 $this->registerJs($script, View::POS_END);

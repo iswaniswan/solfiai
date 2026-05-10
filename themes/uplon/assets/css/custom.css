@@ -15,10 +15,10 @@
     --green: #28a745;
     --teal: #20c997;
     --cyan: #17a2b8;
-    --white: var(--light);
+    --white: #fff;
     --gray: #6c757d;
     --gray-dark: #343a40;
-    --primary: var(--primary);
+    --primary: #E94560;
     --secondary: #6c757d;
     --success: #28a745;
     --info: #17a2b8;

@@ -12,6 +12,8 @@ use yii\bootstrap5\NavBar;
 use yii\web\Cookie;
 
 AppAsset::register($this);
+
+
 /** cookie check */
 $request = Yii::$app->request;
 $darkMode = $request->cookies->getValue('dark-mode');
@@ -71,7 +73,7 @@ $this->registerJs($js, yii\web\View::POS_READY);
     <!-- Start Page Content here -->
     <!-- ============================================================== -->
 
-    <div class="" style="margin-top: 35px">
+    <div class="" style="">
 
         <?php foreach (Yii::$app->session->getAllFlashes() as $key => $message) { ?>
             <?= Alert::widget([
@@ -88,14 +90,7 @@ $this->registerJs($js, yii\web\View::POS_READY);
         <?php } ?>
 
         <div class="content">
-
-            <!-- Start Content-->
-            <div class="container-fluid">
-
-                <?= $content ?>
-
-            </div> <!-- end container-fluid -->
-
+            <?= $content ?>
         </div> <!-- end content -->
 
     </div>

@@ -103,7 +103,7 @@ class SiteController extends Controller
         }
 
         $model->password = '';
-        return $this->render('login', [
+        return $this->render('login-new', [
             'model' => $model,
             'area' => $area
         ]);
@@ -473,7 +473,7 @@ class SiteController extends Controller
         }
 
         $model->password = '';
-        return $this->render('register', [
+        return $this->render('register-new', [
             'model' => $model,
             'referral' => $referral
         ]);
