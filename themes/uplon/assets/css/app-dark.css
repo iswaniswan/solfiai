@@ -12,7 +12,7 @@ html {
   min-height: 100%; }
 
 body {
-  padding-bottom: 60px;
+  /* padding-bottom: 60px; */
   overflow-x: hidden; }
 
 .metismenu {
@@ -62,7 +62,8 @@ body {
   margin-left: 240px;
   overflow: hidden;
   padding: 0 15px 5px 15px;
-  min-height: 80vh;
+  /* min-height: 80vh; */
+  height: 90vh;
   margin-top: 70px; }
 
 .left-side-menu {

@@ -35,6 +35,8 @@
         "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
     --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --body-bg-dark: #1a1d21; 
+    --menu-bg-dark: #212529;
 }
 *,
 *::before,
@@ -71,7 +73,7 @@ body {
     line-height: 1.5;
     /* color: #1a1a2e; */
     text-align: left;
-    background-color: var(--dark);
+    background-color: var(--body-bg-dark);
 }
 [tabindex="-1"]:focus:not(:focus-visible) {
     outline: 0 !important;
@@ -9007,9 +9009,9 @@ a.text-dark:focus {
     color: var(--primary);
 } /*# sourceMappingURL=custom.css.map */
 
-.content-page {
+/* .content-page {
     background: linear-gradient(135deg, #1A1A2E 0%, #0F3460 100%);
-}
+} */
 
 h6.text-uppercase {
     font-weight: 700;
@@ -9021,4 +9023,15 @@ input[readonly] {
 
 table.bg-dark thead {
     color: var(--white);
+}
+
+/** custom override */
+.content-page, .footer {
+    background-color: var(--body-bg-dark) !important;
+}
+
+.navbar-custom, .left-side-menu, .logo-box, 
+.card-box, .card-box.bg-dark,
+.page-title-box, .page-title-box.bg-dark {
+    background-color: var(--menu-bg-dark) !important;
 }
