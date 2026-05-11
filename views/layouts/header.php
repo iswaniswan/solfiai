@@ -31,20 +31,20 @@ use yii\helpers\Html;
                 </div> -->
 
                 <!-- item-->
-                <a href="<?= Url::to(['member/update-profile', 'id' => Session::getIdMember()]) ?>" class="dropdown-item notify-item">
+                <a href="<?= Url::to(['member/update-profile', 'id' => Session::getIdMember()]) ?>" class="dropdown-item notify-item text-muted">
                     <i class="mdi mdi-account-outline"></i>
                     <span>Profile</span>
                 </a>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a href="javascript:void(0);" class="dropdown-item notify-item text-muted">
                     <i class="mdi mdi-settings-outline"></i>
                     <span>Settings</span>
                 </a>
 
                 <!-- item-->
                 <?php /*
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a href="javascript:void(0);" class="dropdown-item notify-item text-muted">
                     <i class="mdi mdi-lock-outline"></i>
                     <span>Lock Screen</span>
                 </a> 
@@ -58,7 +58,7 @@ use yii\helpers\Html;
                 }
                 ?>                    
                 <?php /*    
-                <a href="<?= Url::to(['site/toggle-dark-mode', 'flag' => $flag]) ?>" class="dropdown-item notify-item">
+                <a href="<?= Url::to(['site/toggle-dark-mode', 'flag' => $flag]) ?>" class="dropdown-item notify-item text-muted">
                     <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input theme-choice" 
                             id="dark-mode-switch" <?= $checked ?>>
@@ -68,10 +68,10 @@ use yii\helpers\Html;
                 */ ?>
 
 
-                <div class="dropdown-divider"></div>
+                <div class="dropdown-divider text-muted"></div>
 
                 <!-- item-->
-                <a href="<?= \yii\helpers\Url::to(['/site/logout']) ?>" data-method="post" class="dropdown-item notify-item">
+                <a href="<?= \yii\helpers\Url::to(['/site/logout']) ?>" data-method="post" class="dropdown-item notify-item text-muted">
                     <i class="mdi mdi-logout-variant"></i>
                     <span>Logout</span>
                 </a>

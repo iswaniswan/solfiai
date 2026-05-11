@@ -74,6 +74,7 @@ body {
     /* color: #1a1a2e; */
     text-align: left;
     background-color: var(--body-bg-dark);
+    padding-bottom: 60px;
 }
 [tabindex="-1"]:focus:not(:focus-visible) {
     outline: 0 !important;
@@ -9032,6 +9033,11 @@ table.bg-dark thead {
 
 .navbar-custom, .left-side-menu, .logo-box, 
 .card-box, .card-box.bg-dark,
-.page-title-box, .page-title-box.bg-dark {
+.page-title-box, .page-title-box.bg-dark,
+.dropdown-menu.show {
     background-color: var(--menu-bg-dark) !important;
+}
+
+.dropdown-menu.show {
+    box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.5);
 }
